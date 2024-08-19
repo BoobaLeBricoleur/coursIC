@@ -1,12 +1,19 @@
 name: learn-github-actions
-on: [push]
+
+on: 
+  push:
+    branches:
+      - '*'
+
 jobs:
   check-bats-version:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
+      - run: echo "Hello World"
       - run: npm install -g bats
       - run: bats -v
