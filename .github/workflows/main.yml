@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - '*'
+  workflow_dispatch:
 
 jobs:
   check-bats-version:
@@ -14,4 +15,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
-      - run: echo "Hello World"
+      - run: |
+          if [ "${{ github.event_name }}" == "push" ]; then
+            echo "C'est un push"
+          elif [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "C'est manuel"
+          fi
