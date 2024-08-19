@@ -15,5 +15,3 @@ jobs:
         with:
           node-version: '18'
       - run: echo "Hello World"
-      - run: npm install -g bats
-      - run: bats -v
