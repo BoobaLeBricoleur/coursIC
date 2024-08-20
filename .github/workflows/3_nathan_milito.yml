@@ -1,0 +1,14 @@
+name: Workflow suivant
+
+on: 
+  workflow_run:
+    workflows: ["Pull Request Closed"]
+    types:
+      - completed
+
+jobs:
+  next_message:
+    runs-on: ubuntu-latest
+    steps:
+      - name: message du workflow suivant
+        run: echo "Cest le workflow suivant"

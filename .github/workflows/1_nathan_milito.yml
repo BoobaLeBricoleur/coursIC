@@ -1,0 +1,12 @@
+name: Si issue créé
+
+on: 
+  issues:
+    types: [opened]
+
+jobs:
+  issue_message:
+    runs-on: ubuntu-latest
+    steps:
+      - name: message si issue créé
+        run: echo "Il y a une nouvelle issue"

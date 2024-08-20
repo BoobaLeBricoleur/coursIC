@@ -1,0 +1,13 @@
+name: Si pull request fermée
+
+on: 
+  pull_request:
+    types: [closed]
+
+jobs:
+  pr_message:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.merged == true }}
+    steps:
+      - name: message si pull request fermée
+        run: echo "La pull request a été fermée"
