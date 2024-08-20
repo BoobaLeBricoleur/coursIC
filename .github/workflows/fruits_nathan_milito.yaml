@@ -1,0 +1,17 @@
+name: Matrix fruits
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  generer-combinaisons:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        fruit: [framboise, cerise, clémentine, poire]
+        nom: [Pierre, Jean, Alice]
+    steps:
+      - name: affiche
+        run: |
+          echo "${{ matrix.nom }} mange une ${{ matrix.fruit }}, et il va surement vomir car le fruit contenait une sorte de mousse étrange verdâtre sur lui..."
+        continue-on-error: false 
