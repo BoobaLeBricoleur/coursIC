@@ -4,13 +4,13 @@ on:
   push:
     branches:
       - main
-      - develop
+      - staging
   pull_request:
     branches:
       - main
-      - develop
+      - staging
   schedule:
-    - cron: '0 0 * * 1' # every Monday at midnight
+    - cron: '0 0 * * 1'
 
 jobs:
   build:
@@ -18,7 +18,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        node: [16, 18, 20, 22]
+        node: [16, 18, 20]
         exclude:
           - os: ubuntu-latest
             node: 16
@@ -26,9 +26,6 @@ jobs:
             node: 18
           - os: macos-latest
             node: 20
-        include:
-          - os: windows-latest
-            node: 22
       max-parallel: 2
 
     steps:
