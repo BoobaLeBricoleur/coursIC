@@ -1,0 +1,11 @@
+name: Protect Develop
+
+on: 
+  workflow_call: {}
+
+jobs:
+  protect-develop:
+    runs-on: ubuntu-latest
+    steps:
+      - name: protection de la branche staging
+        run: echo "Quelque chose va s'afficher pour protéger la branche staging."

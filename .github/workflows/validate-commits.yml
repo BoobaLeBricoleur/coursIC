@@ -1,0 +1,16 @@
+name: Validate Commits
+
+on: 
+  workflow_call: {}
+
+jobs:
+  validate-commits:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Conventional Commits
+        uses: webiny/action-conventional-commits@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}

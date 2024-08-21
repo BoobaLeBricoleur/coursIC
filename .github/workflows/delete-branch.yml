@@ -1,0 +1,18 @@
+name: Delete Branch After Merge
+
+on: 
+  workflow_call: {}
+
+jobs:
+  delete-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Delete branch
+        run: |
+          branch_to_delete=$(echo $GITHUB_REF | sed 's/refs\/heads\///')
+          if [[ $branch_to_delete == features/* ]]; then
+            git push origin --delete $branch_to_delete
+          fi

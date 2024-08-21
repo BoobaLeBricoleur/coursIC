@@ -1,0 +1,40 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - 'features/*'
+      - 'hotfix/*'
+      - 'main/*'
+      - 'staging/*'
+  pull_request:
+    branches:
+      - develop
+      - staging
+    paths:
+      - 'features/*'
+      - 'main/*'
+  issues:
+    types: [assigned]
+
+jobs:
+  protect-main:
+    uses: ./.github/workflows/protect-main.yml
+
+  protect-develop:
+    uses: ./.github/workflows/protect-develop.yml
+
+  validate-commits:
+    uses: ./.github/workflows/validate-commits.yml
+
+  test-pipeline:
+    uses: ./.github/workflows/test-pipeline.yml
+
+  test-pipeline-coverage:
+    uses: ./.github/workflows/test-pipeline-coverage.yml
+
+  create-branch:
+    uses: ./.github/workflows/create-branch.yml
+
+  delete-branch:
+    uses: ./.github/workflows/delete-branch.yml
