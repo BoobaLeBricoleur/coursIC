@@ -10,7 +10,7 @@ on:
       - main
       - develop
   schedule:
-    - cron: '0 0 * * 1' # every Monday at midnight
+    - cron: '0 0 * * 1'
 
 jobs:
   build:
@@ -46,7 +46,7 @@ jobs:
           path: dist
 
   conditional-job:
-    needs: build # Cette ligne permet de s'assurer que ce job ne démarre qu'après la fin du job de build
+    needs: build 
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
@@ -54,4 +54,4 @@ jobs:
         with:
           name: build-ubuntu-latest-18
       - name: Simulate deployment
-        run: echo "Deploying application"
+        run: echo "On déploie l'application"
