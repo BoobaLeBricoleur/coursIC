@@ -4,13 +4,13 @@ on:
   push:
     branches:
       - main
-      - staging
+      - develop
   pull_request:
     branches:
       - main
-      - staging
+      - develop
   schedule:
-    - cron: '0 0 * * 1'
+    - cron: '0 0 * * 1' # every Monday at midnight
 
 jobs:
   build:
@@ -18,7 +18,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        node: [16, 18, 20]
+        node: [16, 18, 20, 22]
         exclude:
           - os: ubuntu-latest
             node: 16
@@ -26,6 +26,9 @@ jobs:
             node: 18
           - os: macos-latest
             node: 20
+        include:
+          - os: windows-latest
+            node: 22
       max-parallel: 2
 
     steps:
@@ -43,6 +46,7 @@ jobs:
           path: dist
 
   conditional-job:
+    needs: build # Cette ligne permet de s'assurer que ce job ne démarre qu'après la fin du job de build
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
