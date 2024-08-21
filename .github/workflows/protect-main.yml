@@ -1,0 +1,11 @@
+name: Protect Main
+
+on: 
+  workflow_call: {}
+
+jobs:
+  protect-main:
+    runs-on: ubuntu-latest
+    steps:
+      - name: protection de la branche main
+        run: echo "Quelque chose va s'afficher pour protéger la branche main."
